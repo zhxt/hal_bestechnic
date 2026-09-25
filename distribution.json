@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "public_redistribution": "unconfirmed",
+  "evidence": null,
+  "public_source_url": null,
+  "scope": [
+    "linker/bes2700yp/dual_v1.ld",
+    "zephyr/blobs/lib/bes2700yp/"
+  ],
+  "note": "THIRD_PARTY_NOTICES.md contains available notices only; complete vendor licensing and public redistribution evidence remain pending."
+}

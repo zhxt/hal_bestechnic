@@ -1,0 +1,29 @@
+{
+  "abi": "cortex-m33-fpv5-sp-d16-hard",
+  "artifacts": {
+    "include/bestechnic/bes2700yp/hw.h": "bd2b246cae746994a3628e78636b1e00aaa9f6b34e97e5bb61000bd92f04076e",
+    "linker/bes2700yp/dual_v1.ld": "0c85d15080fd3f88359b74a99abb25a83dfe77f2ec484d1ec84758046a6618d3",
+    "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_bootstrap_compat.a": "50b5badd55adc291927f3d264c916aac69e5e41686649652cf5f5f1d4e5bcbb0",
+    "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_flash.a": "bae4cd5f664ef40fd71d5173aa706c9f9264d2543e9a75d20dd611dd7e1c3714",
+    "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_system.a": "cb60da01d1a3471a67ed83d7a1a7c8a3bef9605647ae8fdda7890d5c871263fa"
+  },
+  "chip": "bes2700yp",
+  "compiler": "arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)",
+  "dependency_manifest_sha256": "3e681a1496ccb49e08b63f5532df995ffe269312740ba199c274084ea11d7136",
+  "hardware_status": "not_tested",
+  "limitations": [
+    "BES2700YP only",
+    "bootstrap_compat retains vendor startup/CMSIS/libc",
+    "system retains reachable PMU/trace/DMA dependencies",
+    "No claim of runtime adapter-service removal or hardware validation"
+  ],
+  "producer_files": {
+    "build.py": "e5393a15f2281e1015b6843ed45ecc8f66486df44672a134490f4646e7b7e09e",
+    "port/bes2700yp/hw.c": "7b1236f526952f112aeb3327dbe8b37091ed5ad817c727c723c4a58c7104c417",
+    "port/bes2700yp/offsets.c": "1b9b26199e4b33f99792b4d4923f345e01517dd66113e9633561535c0d370d94"
+  },
+  "profile": "dual_v1_24m_t2",
+  "schema": 1,
+  "vendor_objects": 35,
+  "version": "0.1.0"
+}

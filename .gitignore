@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+/build/
+/.venv/
+*.swp
+*.swo
+*.swx
+*~
+.env
+.env.*
+.DS_Store
+
+# Downloaded by west blobs fetch hal_bestechnic.
+/zephyr/blobs/lib/
