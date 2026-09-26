@@ -2,7 +2,7 @@
 
 [简体中文](README.zh-CN.md)
 
-`hal_bestechnic` provides prebuilt HAL libraries, a public header, a linker script, and build metadata for the BES2700YP Zephyr integration. A separate bootstrap program links the libraries; the BTH and M55 Zephyr images do not link them directly. Other chips require separate adaptation and validation.
+`hal_bestechnic` supplies a public header, a linker script, build metadata, and blob declarations for prebuilt BES2700YP HAL libraries. A separate bootstrap program links the libraries; the BTH and M55 Zephyr images do not link them directly. Other chips require separate adaptation and validation.
 
 ## Fetch and check
 
@@ -28,10 +28,10 @@ The check should report `status: pass` and `issues: []`. For revision, file hash
 
 The module also includes a [public API](include/bestechnic/bes2700yp/hw.h), a [linker script](linker/bes2700yp/dual_v1.ld), and [CMake import configuration](cmake/import.cmake). [manifest.json](manifest.json) records the library version, compiler, build profile, and file hashes.
 
-Candidate version 0.2.0-rc1 supports BES2700YP at 24 MHz with the `dual_v1_24m_t2` profile and `cortex-m33-fpv5-sp-d16-hard` ABI. The system library adds M55 PARK preparation while the peer CPU remains in reset; the other two archives retain their 0.1.0 bytes. The compiler version must match the manifest. Cortex-M33 here identifies the library build target; it does not identify the BTH hardware core.
+The build profile, ABI, compiler, and artifact hashes are recorded in [manifest.json](manifest.json). The system library includes M55 PARK preparation for use while the peer CPU remains in reset. Cortex-M33 in the ABI identifies the library build target; it does not identify the BTH hardware core.
 
-## Distribution and validation
+## Origin and records
 
 This repository is intended for study, research, and technical validation. Its availability does not grant permission to use or redistribute vendor-origin files. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party notices and commercial-use considerations.
 
-The basis for public redistribution of the libraries and linker script remains unconfirmed; see [distribution.json](distribution.json). A successful build does not establish hardware validation. See the integration repository's [test guide](https://github.com/zhxt/bestechnic-zephyr/blob/main/docs/testing.md) and the corresponding image report for hardware results.
+See [distribution.json](distribution.json) for the recorded redistribution scope and evidence. Hardware results belong to the corresponding integration image report; the integration repository's [test guide](https://github.com/zhxt/bestechnic-zephyr/blob/main/docs/testing.md) describes how to record them.

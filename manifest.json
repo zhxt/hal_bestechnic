@@ -18,7 +18,7 @@
     "No claim of runtime adapter-service removal or hardware validation"
   ],
   "producer_files": {
-    "build.py": "8813f5ad0c96092437b9635e654a514cb71ded791af935588dd75b293baa4705",
+    "build.py": "d96c42623283a36e31ac105f7c16f84cf258420dfe29df73db9df127abc909c4",
     "port/bes2700yp/hw.c": "7b1236f526952f112aeb3327dbe8b37091ed5ad817c727c723c4a58c7104c417",
     "port/bes2700yp/offsets.c": "1b9b26199e4b33f99792b4d4923f345e01517dd66113e9633561535c0d370d94",
     "port/bes2700yp/repark.c": "c528dca01129d26b9c00a0b0d0f69235df2d25693d010d89e0bbfee5d140742b"
@@ -26,5 +26,5 @@
   "profile": "dual_v1_24m_t2",
   "schema": 1,
   "vendor_objects": 35,
-  "version": "0.2.0-rc1"
+  "version": "0.2.0"
 }
