@@ -28,7 +28,7 @@ The check should report `status: pass` and `issues: []`. For revision, file hash
 
 The module also includes a [public API](include/bestechnic/bes2700yp/hw.h), a [linker script](linker/bes2700yp/dual_v1.ld), and [CMake import configuration](cmake/import.cmake). [manifest.json](manifest.json) records the library version, compiler, build profile, and file hashes.
 
-Version 0.1.0 supports BES2700YP at 24 MHz with the `dual_v1_24m_t2` profile and `cortex-m33-fpv5-sp-d16-hard` ABI. The compiler version must match the manifest. Cortex-M33 here identifies the library build target; it does not identify the BTH hardware core.
+Candidate version 0.2.0-rc1 supports BES2700YP at 24 MHz with the `dual_v1_24m_t2` profile and `cortex-m33-fpv5-sp-d16-hard` ABI. The system library adds M55 PARK preparation while the peer CPU remains in reset; the other two archives retain their 0.1.0 bytes. The compiler version must match the manifest. Cortex-M33 here identifies the library build target; it does not identify the BTH hardware core.
 
 ## Distribution and validation
 

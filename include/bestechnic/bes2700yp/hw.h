@@ -5,6 +5,22 @@
 
 /* Bootstrap-only ABI: Cortex-M33, hard float, dual_v1_24m_t2. */
 #define BES2700YP_HW_ABI 1U
+#define BES2700YP_REPARK_API 1U
+#define BES2700YP_REPARK_FIELDS(X) \
+ X(reason) X(reset_before) X(reset_after) \
+ X(sel0_before) X(sel1_before) X(sel0_axi) X(sel1_axi) X(sel0_after) X(sel1_after) \
+ X(phys0) X(phys1) X(phys2) X(expected0) X(expected1) X(expected2) \
+ X(read0) X(read1) X(read2) X(restore_ok) X(write_mask)
+struct bes2700yp_repark_result {
+#define BES2700YP_PARK_MEMBER(n) uint32_t n;
+ BES2700YP_REPARK_FIELDS(BES2700YP_PARK_MEMBER)
+#undef BES2700YP_PARK_MEMBER
+};
+/* Requires sole ownership and peer CPU held reset. Prepares only; never releases.
+ * Temporarily remaps physical bank 9, restores its original selector on failure.
+ * Returns 0 or -(20+reason): reset=1, ownership=2, mapping=3, write=4,
+ * restore=5, reset lost=6. The caller must not release on any error. */
+int bes2700yp_m55_repark_prepare(struct bes2700yp_repark_result *result);
 #define BES2700YP_SLOW_HZ 16000U
 #define BES2700YP_SLOW_NOMINAL_HZ 16000U
 struct bes2700yp_hw_snapshot {

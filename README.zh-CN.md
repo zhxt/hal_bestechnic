@@ -28,7 +28,7 @@
 
 模块还包含[公共 API](include/bestechnic/bes2700yp/hw.h)、[链接脚本](linker/bes2700yp/dual_v1.ld)及 [CMake 导入配置](cmake/import.cmake)；[manifest.json](manifest.json) 记录库版本、编译器、适用配置和文件哈希。
 
-版本 0.1.0 的库适用于 BES2700YP、24 MHz、`dual_v1_24m_t2` profile 和 `cortex-m33-fpv5-sp-d16-hard` ABI；编译器版本须与 manifest 一致。这里的 Cortex-M33 是库的编译目标配置，不表示 BTH 的硬件核型号。
+候选版本 0.2.0-rc1 适用于 BES2700YP、24 MHz、`dual_v1_24m_t2` profile 和 `cortex-m33-fpv5-sp-d16-hard` ABI。system 库增加 M55 CPU 保持复位时的 PARK 准备接口，另两个静态库与 0.1.0 版本逐字节一致。编译器版本须与 manifest 一致。这里的 Cortex-M33 是库的编译目标配置，不表示 BTH 的硬件核型号。
 
 ## 分发与验证状态
 

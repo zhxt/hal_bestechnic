@@ -7,27 +7,27 @@ blobs:
 - path: lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_bootstrap_compat.a
   sha256: 50b5badd55adc291927f3d264c916aac69e5e41686649652cf5f5f1d4e5bcbb0
   type: lib
-  version: 0.1.0
+  version: 0.2.0-rc1
   license-path: THIRD_PARTY_NOTICES.md
-  url: https://raw.githubusercontent.com/zhxt/bestechnic-blobs/2f6bdde89489d7650dd6541399dd76233bdf0d1d/lib/bes2700yp/platform/libbes2700yp_bootstrap_compat.a
+  url: https://raw.githubusercontent.com/zhxt/bestechnic-blobs/be054ebe1fa0ed4609690fa90478d0c1d9ed98e5/lib/bes2700yp/platform/libbes2700yp_bootstrap_compat.a
   description: BES2700YP bootstrap_compat library (dual_v1_24m_t2)
-  doc-url: https://github.com/zhxt/bestechnic-blobs/blob/2f6bdde89489d7650dd6541399dd76233bdf0d1d/README.md
+  doc-url: https://github.com/zhxt/bestechnic-blobs/blob/be054ebe1fa0ed4609690fa90478d0c1d9ed98e5/README.md
   size: 20716
 - path: lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_flash.a
   sha256: bae4cd5f664ef40fd71d5173aa706c9f9264d2543e9a75d20dd611dd7e1c3714
   type: lib
-  version: 0.1.0
+  version: 0.2.0-rc1
   license-path: THIRD_PARTY_NOTICES.md
-  url: https://raw.githubusercontent.com/zhxt/bestechnic-blobs/2f6bdde89489d7650dd6541399dd76233bdf0d1d/lib/bes2700yp/platform/libbes2700yp_flash.a
+  url: https://raw.githubusercontent.com/zhxt/bestechnic-blobs/be054ebe1fa0ed4609690fa90478d0c1d9ed98e5/lib/bes2700yp/platform/libbes2700yp_flash.a
   description: BES2700YP flash library (dual_v1_24m_t2)
-  doc-url: https://github.com/zhxt/bestechnic-blobs/blob/2f6bdde89489d7650dd6541399dd76233bdf0d1d/README.md
+  doc-url: https://github.com/zhxt/bestechnic-blobs/blob/be054ebe1fa0ed4609690fa90478d0c1d9ed98e5/README.md
   size: 77154
 - path: lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_system.a
-  sha256: cb60da01d1a3471a67ed83d7a1a7c8a3bef9605647ae8fdda7890d5c871263fa
+  sha256: 802d4ffae7816c0e2eaad063c6a6227a32fac3a1615be64848c2c096f1f7e6ea
   type: lib
-  version: 0.1.0
+  version: 0.2.0-rc1
   license-path: THIRD_PARTY_NOTICES.md
-  url: https://raw.githubusercontent.com/zhxt/bestechnic-blobs/2f6bdde89489d7650dd6541399dd76233bdf0d1d/lib/bes2700yp/platform/libbes2700yp_system.a
+  url: https://raw.githubusercontent.com/zhxt/bestechnic-blobs/be054ebe1fa0ed4609690fa90478d0c1d9ed98e5/lib/bes2700yp/platform/libbes2700yp_system.a
   description: BES2700YP system library (dual_v1_24m_t2)
-  doc-url: https://github.com/zhxt/bestechnic-blobs/blob/2f6bdde89489d7650dd6541399dd76233bdf0d1d/README.md
-  size: 437592
+  doc-url: https://github.com/zhxt/bestechnic-blobs/blob/be054ebe1fa0ed4609690fa90478d0c1d9ed98e5/README.md
+  size: 438978
