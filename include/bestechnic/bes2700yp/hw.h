@@ -43,4 +43,28 @@ void bes2700yp_m55_dtcm_enable(void);
 void bes2700yp_m55_start(uint32_t vector);
 void bes2700yp_m55_stop(void);
 void bes2700yp_snapshot(struct bes2700yp_hw_snapshot *snapshot);
+/* BTH UART0 resource readback; caller is the sole privileged BTH owner.
+ * valid: bit0 configured clock, bit1 gate/reset, bit2 AON pin route.
+ * source: 1 crystal, 2 crystal x2, 3 PLL (frequency unavailable).
+ * clocks/reset_released: bit0 peripheral bus, bit1 functional clock/reset.
+ * Pins use bank*8+index. Pull masks: bit0 RX, bit1 TX.
+ * No physical voltage or calibrated frequency claim. No MMIO writes/locks.
+ * Return -1 for null output, -2 for a changing snapshot; discard on error. */
+#define BES2700YP_UART_READBACK_API 1U
+struct bes2700yp_uart0_state {
+	uint32_t valid;
+	uint32_t source;
+	uint32_t source_hz;
+	uint32_t divider;
+	uint32_t configured_hz;
+	uint32_t clocks;
+	uint32_t reset_released;
+	uint32_t rx_pin;
+	uint32_t tx_pin;
+	uint32_t rx_mux;
+	uint32_t tx_mux;
+	uint32_t pull_up;
+	uint32_t pull_down;
+};
+int bes2700yp_uart0_read(struct bes2700yp_uart0_state *state);
 #endif

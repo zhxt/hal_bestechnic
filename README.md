@@ -35,3 +35,13 @@ The build profile, ABI, compiler, and artifact hashes are recorded in [manifest.
 This repository is intended for study, research, and technical validation. Its availability does not grant permission to use or redistribute vendor-origin files. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party notices and commercial-use considerations.
 
 See [distribution.json](distribution.json) for the recorded redistribution scope and evidence. Hardware results belong to the corresponding integration image report; the integration repository's [test guide](https://github.com/zhxt/bestechnic-zephyr/blob/main/docs/testing.md) describes how to record them.
+
+## UART resource readback
+
+The bootstrap facade `bes2700yp_uart0_read()` reads the BTH UART0 clock
+selector, peripheral/functional gates and resets, and AON P2_2/P2_3 mux/pull.
+It requires two matching bounded samples and does not write MMIO or acquire
+the vendor IOMUX lock. Its caller must serialize BTH configuration access.
+Validity bits separate configured clock, gate/reset and pin-route information.
+PLL frequency, pad voltage and externally calibrated frequency are not claimed.
+See [the public interface](include/bestechnic/bes2700yp/hw.h) for field semantics.

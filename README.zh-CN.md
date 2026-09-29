@@ -35,3 +35,10 @@
 本仓面向学习研究与技术验证，不构成对厂商来源文件的使用或再分发授权。商用授权及第三方声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 分发范围与依据见 [distribution.json](distribution.json)；实板结果由对应的集成镜像报告记录，记录方式见集成仓的[测试说明](https://github.com/zhxt/bestechnic-zephyr/blob/main/docs/testing.zh-CN.md#实板验收)。
+
+## UART 资源读回
+
+bootstrap facade `bes2700yp_uart0_read()` 读取 BTH UART0 时钟选择、总线/功能门控及复位、AON P2_2/P2_3 的 mux/pull。
+接口要求两次有界采样一致，不写 MMIO、不取得厂商 IOMUX 锁；调用方须串行化 BTH 配置访问。
+有效位区分配置频率、门控/复位和引脚路由信息，不声明 PLL 频率、pad 电压或外部校准频率。
+字段语义见[公共接口](include/bestechnic/bes2700yp/hw.h)。
