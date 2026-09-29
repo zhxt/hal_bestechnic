@@ -45,3 +45,7 @@ the vendor IOMUX lock. Its caller must serialize BTH configuration access.
 Validity bits separate configured clock, gate/reset and pin-route information.
 PLL frequency, pad voltage and externally calibrated frequency are not claimed.
 See [the public interface](include/bestechnic/bes2700yp/hw.h) for field semantics.
+
+## Restricted GPIO access
+
+`bes2700yp_gpio_access()` provides AON P2_0/P2_1 input pull-ups, P1_4 output and bounded readback. Its privileged BTH caller masks interrupts and serializes writes with lifecycle control. It attempts MEMSC0 once, refuses IRQ-owned pins and unavailable banks, preserves other pads, and never changes GPIO gates, bank reset, VIO or drive strength. Output use requires board voltage confirmation. The original facade adds no vendor GPIO source to the maintained subset; it is not a Zephyr GPIO/pinctrl driver. See the public header for operations, ownership and error semantics.

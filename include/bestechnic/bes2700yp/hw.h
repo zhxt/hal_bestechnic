@@ -67,4 +67,26 @@ struct bes2700yp_uart0_state {
 	uint32_t pull_down;
 };
 int bes2700yp_uart0_read(struct bes2700yp_uart0_state *state);
+/* Restricted AON GPIO access. BTH privileged thread, with local IRQs masked.
+ * P2_0/P2_1: input pull-up; P1_4: push-pull output after board voltage review.
+ * P1_5 and UART pads are read/protected, never claimed. Existing bank clock
+ * and reset must already be usable; no bank reset, VIO or drive changes.
+ * AON MEMSC 0 is tried once per operation, never waited on. IRQ-owned target
+ * pins are refused. Readback failure leaves the target as input.
+ * Return: -1 invalid, -2 busy, -3 bank unavailable, -4 readback failure.
+ * Snapshot output is valid only on success. Voltages are not measured. */
+#define BES2700YP_GPIO_API 1U
+#define BES2700YP_GPIO_KEYS ((1U << 16) | (1U << 17))
+#define BES2700YP_GPIO_LED (1U << 12)
+#define BES2700YP_GPIO_PINS (BES2700YP_GPIO_KEYS | (3U << 12))
+#define BES2700YP_GPIO_READ 1U
+#define BES2700YP_GPIO_INPUT 2U
+#define BES2700YP_GPIO_OUTPUT 3U
+#define BES2700YP_GPIO_WRITE 4U
+struct bes2700yp_gpio_state {
+ uint32_t pins, inputs, directions, outputs, mux_led, mux_keys;
+ uint32_t pull_up, pull_down, clocks, resets, irq_enabled, control;
+};
+int bes2700yp_gpio_access(uint32_t op, uint32_t pin, uint32_t value,
+                         struct bes2700yp_gpio_state *state);
 #endif

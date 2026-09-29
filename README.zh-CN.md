@@ -42,3 +42,7 @@ bootstrap facade `bes2700yp_uart0_read()` 读取 BTH UART0 时钟选择、总线
 接口要求两次有界采样一致，不写 MMIO、不取得厂商 IOMUX 锁；调用方须串行化 BTH 配置访问。
 有效位区分配置频率、门控/复位和引脚路由信息，不声明 PLL 频率、pad 电压或外部校准频率。
 字段语义见[公共接口](include/bestechnic/bes2700yp/hw.h)。
+
+## 受限 GPIO 访问
+
+`bes2700yp_gpio_access()` 提供 AON P2_0/P2_1 上拉输入、P1_4 输出及有限读回。特权 BTH 调用方屏蔽中断，并将写操作与生命周期管理串行化。每次仅尝试一次 MEMSC0，拒绝 IRQ 已占用的目标及不可用的 bank，保持其他引脚，不修改 GPIO 门控、bank 复位、VIO 或驱动强度。输出前需确认板级电压。此自有接口不增加 SDK GPIO 源文件，也不是 Zephyr GPIO/pinctrl 驱动。操作、所有权及错误语义见公共头文件。
