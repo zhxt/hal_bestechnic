@@ -94,4 +94,28 @@ int bes2700yp_gpio_access(uint32_t op, uint32_t pin, uint32_t value,
 /* Gate/reset checks and one pad read; no IOMUX access, lock or MMIO write.
  * Same BTH transaction ownership as access(). Returns 0, -1 or -3. */
 int bes2700yp_gpio_sample(uint32_t *inputs);
+/* GPIO IRQ primitives for a sole BTH owner of AON IRQ 44. No NVIC, IOMUX,
+ * bank reset or voltage writes. GPIO input configuration precedes claim.
+ * Caller serializes configuration with IRQ 44 disabled (other IRQs live).
+ * ack() is ISR-safe, fixed-length, and clears only owned pending bits.
+ * Snapshot is diagnostic/thread-only; it never acknowledges an interrupt.
+ * Modes: 0 disable, 1 falling edge, 2 rising edge; no native both-edge mode.
+ * Errors: -1 invalid, -2 foreign ownership, -3 bank unavailable,
+ * -4 readback/foreign pending, -5 not claimed. ack() returns a pin mask.
+ * On errors caller disables its NVIC entry and reports the retained state.
+ */
+#define BES2700YP_GPIO_IRQ_API 1U
+#define BES2700YP_GPIO_IRQ_NUMBER 44U
+#define BES2700YP_GPIO_IRQ_FIELDS(X) \
+ X(enabled) X(masked) X(edge) X(rising) X(debounce) X(raw) X(pending) X(inputs) \
+ X(route) X(bth_status) X(wake_mask) X(wake_status) X(sys_route) X(btc_route) X(sens_route) X(directions)
+struct bes2700yp_gpio_irq_state {
+#define IRQ_MEMBER(n) uint32_t n;
+ BES2700YP_GPIO_IRQ_FIELDS(IRQ_MEMBER)
+#undef IRQ_MEMBER
+};
+int bes2700yp_gpio_irq_claim(void);
+int bes2700yp_gpio_irq_config(uint32_t pin, uint32_t mode);
+int32_t bes2700yp_gpio_irq_ack(void);
+int bes2700yp_gpio_irq_read(struct bes2700yp_gpio_irq_state *state);
 #endif
