@@ -48,4 +48,6 @@ See [the public interface](include/bestechnic/bes2700yp/hw.h) for field semantic
 
 ## Restricted GPIO access
 
-`bes2700yp_gpio_access()` provides AON P2_0/P2_1 input pull-ups, P1_4 output and bounded readback. Its privileged BTH caller masks interrupts and serializes writes with lifecycle control. It attempts MEMSC0 once, refuses IRQ-owned pins and unavailable banks, preserves other pads, and never changes GPIO gates, bank reset, VIO or drive strength. Output use requires board voltage confirmation. The original facade adds no vendor GPIO source to the maintained subset; it is not a Zephyr GPIO/pinctrl driver. See the public header for operations, ownership and error semantics.
+`bes2700yp_gpio_access()` provides AON P2_0/P2_1 input pull-ups, P1_4 output and bounded readback. Its privileged BTH caller keeps interrupts enabled and holds the lifecycle arbitration guard across all calls. ISR code must not acquire MEMSC0 or call vendor IOMUX setters. It attempts MEMSC0 once, refuses IRQ-owned pins and unavailable banks, preserves other pads, and never changes GPIO gates, bank reset, VIO or drive strength. Output use requires board voltage confirmation. The original facade adds no vendor GPIO source to the maintained subset; it is not a Zephyr GPIO/pinctrl driver. See the public header for operations, ownership and error semantics.
+
+`bes2700yp_gpio_sample()` checks bank availability and reads input levels without MEMSC0, configuration snapshots or hardware writes. It requires the same IRQ-enabled BTH owner and transaction guard.

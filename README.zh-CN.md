@@ -45,4 +45,6 @@ bootstrap facade `bes2700yp_uart0_read()` 读取 BTH UART0 时钟选择、总线
 
 ## 受限 GPIO 访问
 
-`bes2700yp_gpio_access()` 提供 AON P2_0/P2_1 上拉输入、P1_4 输出及有限读回。特权 BTH 调用方屏蔽中断，并将写操作与生命周期管理串行化。每次仅尝试一次 MEMSC0，拒绝 IRQ 已占用的目标及不可用的 bank，保持其他引脚，不修改 GPIO 门控、bank 复位、VIO 或驱动强度。输出前需确认板级电压。此自有接口不增加 SDK GPIO 源文件，也不是 Zephyr GPIO/pinctrl 驱动。操作、所有权及错误语义见公共头文件。
+`bes2700yp_gpio_access()` 提供 AON P2_0/P2_1 上拉输入、P1_4 输出及有限读回。特权 BTH 调用方在硬件访问期间保持中断开启，所有调用均持有生命周期仲裁保护。ISR 不得获取 MEMSC0 或调用厂商 IOMUX 配置入口。每次仅尝试一次 MEMSC0，拒绝 IRQ 已占用的目标及不可用的 bank，保持其他引脚，不修改 GPIO 门控、bank 复位、VIO 或驱动强度。输出前需确认板级电压。此自有接口不增加 SDK GPIO 源文件，也不是 Zephyr GPIO/pinctrl 驱动。操作、所有权及错误语义见公共头文件。
+
+`bes2700yp_gpio_sample()` 检查 bank 可用性并读输入电平，不获取 MEMSC0、不读取配置快照，也不写硬件；同样需要 BTH 所有权、仲裁保护和中断开启。

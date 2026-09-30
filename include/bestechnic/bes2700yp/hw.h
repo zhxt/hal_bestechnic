@@ -67,7 +67,9 @@ struct bes2700yp_uart0_state {
 	uint32_t pull_down;
 };
 int bes2700yp_uart0_read(struct bes2700yp_uart0_state *state);
-/* Restricted AON GPIO access. BTH privileged thread, with local IRQs masked.
+/* Restricted AON GPIO access. BTH privileged thread, with IRQs enabled.
+ * Caller holds the BTH transaction guard across hardware access, including
+ * reads. No ISR may acquire MEMSC0 or call a vendor IOMUX setter.
  * P2_0/P2_1: input pull-up; P1_4: push-pull output after board voltage review.
  * P1_5 and UART pads are read/protected, never claimed. Existing bank clock
  * and reset must already be usable; no bank reset, VIO or drive changes.
@@ -75,7 +77,7 @@ int bes2700yp_uart0_read(struct bes2700yp_uart0_state *state);
  * pins are refused. Readback failure leaves the target as input.
  * Return: -1 invalid, -2 busy, -3 bank unavailable, -4 readback failure.
  * Snapshot output is valid only on success. Voltages are not measured. */
-#define BES2700YP_GPIO_API 1U
+#define BES2700YP_GPIO_API 2U
 #define BES2700YP_GPIO_KEYS ((1U << 16) | (1U << 17))
 #define BES2700YP_GPIO_LED (1U << 12)
 #define BES2700YP_GPIO_PINS (BES2700YP_GPIO_KEYS | (3U << 12))
@@ -89,4 +91,7 @@ struct bes2700yp_gpio_state {
 };
 int bes2700yp_gpio_access(uint32_t op, uint32_t pin, uint32_t value,
                          struct bes2700yp_gpio_state *state);
+/* Gate/reset checks and one pad read; no IOMUX access, lock or MMIO write.
+ * Same BTH transaction ownership as access(). Returns 0, -1 or -3. */
+int bes2700yp_gpio_sample(uint32_t *inputs);
 #endif

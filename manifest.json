@@ -1,11 +1,11 @@
 {
   "abi": "cortex-m33-fpv5-sp-d16-hard",
   "artifacts": {
-    "include/bestechnic/bes2700yp/hw.h": "475c83b1238209ac8a6c8e2d1c80fa91f7e24a68851cf89b9a6d19ba1251a1d5",
+    "include/bestechnic/bes2700yp/hw.h": "e558b9dc298432bb48292102d84fbcb9f7038c794340c4e853dda67898a4a1a1",
     "linker/bes2700yp/dual_v1.ld": "0c85d15080fd3f88359b74a99abb25a83dfe77f2ec484d1ec84758046a6618d3",
     "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_bootstrap_compat.a": "50b5badd55adc291927f3d264c916aac69e5e41686649652cf5f5f1d4e5bcbb0",
     "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_flash.a": "bae4cd5f664ef40fd71d5173aa706c9f9264d2543e9a75d20dd611dd7e1c3714",
-    "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_system.a": "2003ad34d0b20dd3e4833ec4c807a1cd73443d90f4214c5bd5f2abfe0a90952d"
+    "zephyr/blobs/lib/bes2700yp/cortex-m33-fpv5-sp-d16-hard/dual_v1_24m_t2/libbes2700yp_system.a": "f97435599c3a270e00014cd0879366a37fbd818081e0547640a1c47c29b61a9c"
   },
   "chip": "bes2700yp",
   "compiler": "arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)",
@@ -18,8 +18,8 @@
     "No claim of runtime adapter-service removal or hardware validation"
   ],
   "producer_files": {
-    "build.py": "4cdd10e14010842de3e37d03ceef26d721443d31ddd6e855ed740f1544f72a6b",
-    "port/bes2700yp/gpio.c": "4841e65e72796a5273864da48ebbf35548d38fa641b96c0d66fce895882b9e6f",
+    "build.py": "eeaff4c728c6ff32870704609e629581718a858fc53952c6b3a6114128521788",
+    "port/bes2700yp/gpio.c": "c425564d718aefec6543146418069854b383490422d492b7fb8dd050c6e12469",
     "port/bes2700yp/hw.c": "7b1236f526952f112aeb3327dbe8b37091ed5ad817c727c723c4a58c7104c417",
     "port/bes2700yp/offsets.c": "1b9b26199e4b33f99792b4d4923f345e01517dd66113e9633561535c0d370d94",
     "port/bes2700yp/repark.c": "c528dca01129d26b9c00a0b0d0f69235df2d25693d010d89e0bbfee5d140742b",
@@ -28,5 +28,5 @@
   "profile": "dual_v1_24m_t2",
   "schema": 1,
   "vendor_objects": 35,
-  "version": "0.4.0"
+  "version": "0.4.1"
 }
